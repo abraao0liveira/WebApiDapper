@@ -23,6 +23,7 @@ C:\Users\abraa\OneDrive\Documentos\Projects\WebApiDapper\obj\Debug\net8.0\WebApi
 C:\Users\abraa\OneDrive\Documentos\Projects\WebApiDapper\obj\Debug\net8.0\WebApiDapper.csproj.CoreCompileInputs.cache
 C:\Users\abraa\OneDrive\Documentos\Projects\WebApiDapper\obj\Debug\net8.0\WebApiDapper.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\abraa\OneDrive\Documentos\Projects\WebApiDapper\obj\Debug\net8.0\WebApiDapper.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\abraa\OneDrive\Documentos\Projects\WebApiDapper\obj\Debug\net8.0\WebApiDapper.sourcelink.json
 C:\Users\abraa\OneDrive\Documentos\Projects\WebApiDapper\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\abraa\OneDrive\Documentos\Projects\WebApiDapper\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\abraa\OneDrive\Documentos\Projects\WebApiDapper\obj\Debug\net8.0\staticwebassets\msbuild.WebApiDapper.Microsoft.AspNetCore.StaticWebAssets.props

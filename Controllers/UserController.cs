@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApiDapper.DTO;
 using WebApiDapper.Services;
 
 namespace WebApiDapper.Controllers
@@ -14,7 +15,7 @@ namespace WebApiDapper.Controllers
       _userInterface = userInterface;
     }
 
-    [HttpGet]
+    [HttpGet("list")]
     public async Task<IActionResult> ListUsers()
     {
       var users = await _userInterface.ListUsers();
@@ -38,6 +39,19 @@ namespace WebApiDapper.Controllers
       }
 
       return Ok(user); //200
+    }
+
+    [HttpPost("create")]
+    public async Task<IActionResult> CreateUser(UserCreateDTO userCreateDTO)
+    {
+      var users = await _userInterface.CreateUser(userCreateDTO);
+
+      if (users.Status == false)
+      {
+        return BadRequest(users); //400
+      }
+
+      return Ok(users); //200
     }
   }
 }

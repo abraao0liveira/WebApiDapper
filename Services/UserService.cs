@@ -68,8 +68,26 @@ namespace WebApiDapper.Services
 
       using (var connection = new MySqlConnection(_configuration.GetConnectionString("Default")))
       {
-        var sql = await connection.ExecuteAsync("INSERT INTO Users (Name, Email, Situation) VALUES (@Name, @Email, @Situation)", userCreateDTO);
+        var sql = await connection.ExecuteAsync("INSERT INTO Users (Name, Email, Situation, Password) VALUES (@Name, @Email, @Situation, @Password)", userCreateDTO);
+
+        if (sql == 0)
+        {
+          response.Message = "Erro ao criar usuário";
+          response.Status = false;
+          return response;
+        }
+
+        var users = await ListUsers(connection);
+        var usersMapped = _mapper.Map<List<UserListDTO>>(users);
+        response.Data = usersMapped;
+        response.Message = "Usuário criado com sucesso";
       }
+      return response;
+    }
+
+    private static async Task<IEnumerable<User>> ListUsers(MySqlConnection connection)
+    {
+      return await connection.QueryAsync<User>("SELECT * FROM Users");
     }
   }
 }
