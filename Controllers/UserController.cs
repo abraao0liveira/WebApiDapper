@@ -53,5 +53,18 @@ namespace WebApiDapper.Controllers
 
       return Ok(users); //200
     }
+
+    [HttpPut("update")]
+    public async Task<IActionResult> UpdateUser(UserUpdateDTO userUpdateDTO)
+    {
+      var users = await _userInterface.UpdateUser(userUpdateDTO);
+
+      if (users.Status == false)
+      {
+        return BadRequest(users); //400
+      }
+
+      return Ok(users); //200
+    }
   }
 }

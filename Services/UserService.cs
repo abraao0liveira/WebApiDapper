@@ -85,6 +85,35 @@ namespace WebApiDapper.Services
       return response;
     }
 
+    public async Task<ResponseModel<List<UserListDTO>>> UpdateUser(UserUpdateDTO userUpdateDTO)
+    {
+      ResponseModel<List<UserListDTO>> response = new ResponseModel<List<UserListDTO>>();
+
+      using (var connection = new MySqlConnection(_configuration.GetConnectionString("Default")))
+      {
+        var sql = await connection.ExecuteAsync("UPDATE Users SET Name = @Name, Email = @Email, Situation = @Situation WHERE Id = @Id", userUpdateDTO);
+
+        if (sql == 0)
+        {
+          response.Message = "Erro ao atualizar usuário";
+          response.Status = false;
+          return response;
+        }
+
+        var users = await ListUsers(connection);
+        var usersMapped = _mapper.Map<List<UserListDTO>>(users);
+        response.Data = usersMapped;
+        response.Message = "Usuário atualizado com sucesso";
+      }
+      return response;
+    }
+
+
+
+
+
+
+
     private static async Task<IEnumerable<User>> ListUsers(MySqlConnection connection)
     {
       return await connection.QueryAsync<User>("SELECT * FROM Users");
