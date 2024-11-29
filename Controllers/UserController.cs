@@ -54,7 +54,7 @@ namespace WebApiDapper.Controllers
       return Ok(users); //200
     }
 
-    [HttpPut("update")]
+    [HttpPost("update")]
     public async Task<IActionResult> UpdateUser(UserUpdateDTO userUpdateDTO)
     {
       var users = await _userInterface.UpdateUser(userUpdateDTO);
@@ -67,7 +67,7 @@ namespace WebApiDapper.Controllers
       return Ok(users); //200
     }
 
-    [HttpDelete("delete/{userId}")]
+    [HttpPost("delete/{userId}")]
     public async Task<IActionResult> DeleteUser(int userId)
     {
       var users = await _userInterface.DeleteUser(userId);
