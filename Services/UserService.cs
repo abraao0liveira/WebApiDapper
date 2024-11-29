@@ -107,12 +107,28 @@ namespace WebApiDapper.Services
       }
       return response;
     }
+    public async Task<ResponseModel<List<UserListDTO>>> DeleteUser(int userId)
+    {
+      ResponseModel<List<UserListDTO>> response = new ResponseModel<List<UserListDTO>>();
 
+      using (var connection = new MySqlConnection(_configuration.GetConnectionString("Default")))
+      {
+        var sql = await connection.ExecuteAsync("DELETE FROM Users WHERE Id = @Id", new { Id = userId });
 
+        if (sql == 0)
+        {
+          response.Message = "Erro ao deletar usuário";
+          response.Status = false;
+          return response;
+        }
 
-
-
-
+        var users = await ListUsers(connection);
+        var usersMapped = _mapper.Map<List<UserListDTO>>(users);
+        response.Data = usersMapped;
+        response.Message = "Usuário deletado com sucesso";
+      }
+      return response;
+    }
 
     private static async Task<IEnumerable<User>> ListUsers(MySqlConnection connection)
     {

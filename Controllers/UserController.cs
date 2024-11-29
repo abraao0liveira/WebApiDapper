@@ -66,5 +66,18 @@ namespace WebApiDapper.Controllers
 
       return Ok(users); //200
     }
+
+    [HttpDelete("delete/{userId}")]
+    public async Task<IActionResult> DeleteUser(int userId)
+    {
+      var users = await _userInterface.DeleteUser(userId);
+
+      if (users.Status == false)
+      {
+        return BadRequest(users); //400
+      }
+
+      return Ok(users); //200
+    }
   }
 }

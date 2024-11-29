@@ -10,5 +10,6 @@ namespace WebApiDapper.Services
     Task<ResponseModel<UserListDTO>> ListUserId(int userId);
     Task<ResponseModel<List<UserListDTO>>> CreateUser(UserCreateDTO userCreateDTO);
     Task<ResponseModel<List<UserListDTO>>> UpdateUser(UserUpdateDTO userUpdateDTO);
+    Task<ResponseModel<List<UserListDTO>>> DeleteUser(int userId);
   }
 }
